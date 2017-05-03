@@ -1,3 +1,6 @@
+/**
+ * 地图页面，记录运动路径，和操作控制
+ */
 import React, {Component} from 'react';
 import {
   View,
@@ -15,6 +18,7 @@ import Dimensions from 'Dimensions';
 const {height, width} = Dimensions.get('window');
 
 class BaiduMapView extends Component {
+  //设置初始化状态
   constructor(props) {
     super(props);
     this.state = {
@@ -67,13 +71,14 @@ class BaiduMapView extends Component {
     }
   }
 
-
+  //注册微信插件，和去的当前位置
   componentDidMount() {
     WeChat.registerApp('wx6575737601f069e8');
     //获取当前位置
     this._setLocation();
   }
 
+  //当组件将要卸载的时候，去除，时间循环器
   componentWillUnmount(){
     clearInterval(this.state.time);
   }
@@ -122,6 +127,7 @@ class BaiduMapView extends Component {
     }
   }
 
+  //重新加载组件
   _reload(){
     this.setState({
       init: false,
@@ -156,7 +162,7 @@ class BaiduMapView extends Component {
     });
     this._setLocation();
   }
-
+  //开始按钮的动作。
   _handleStartPress(){
     if(this.state.startBtn === 0) {
       ToastAndroid.showWithGravity('路程开始记录！', ToastAndroid.LONG, ToastAndroid.CENTER);
@@ -171,7 +177,7 @@ class BaiduMapView extends Component {
     }
     
   }
-
+  //接受按钮的操作
   _handleEndPress(){
     let {navigate} = this.props.navigation;
     if(this.state.startBtn === 0){
@@ -197,6 +203,7 @@ class BaiduMapView extends Component {
     clearInterval(this.state.time);
   }
 
+  //画轨迹
   _sendHistoryTrack(e){
     if(e.status  == 0){
       let str2json = JSON.parse(e.TrackPoints);
@@ -229,7 +236,7 @@ class BaiduMapView extends Component {
           clearMarkers = {state.clearMarkers}
           onHistoryTrack={this._sendHistoryTrack.bind(this)}
           dreaTrackStartTime = {state.dreaTrackStartTime}
-        ></BaiduMap>
+        />
 
         <View style={styles.btnArea}>
           <TouchableOpacity
