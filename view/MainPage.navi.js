@@ -1,3 +1,6 @@
+/**
+ * 地图页面的导航器设置，包含地图，分享页
+ */
 import React, { Component } from 'react';
 import {
   StyleSheet,

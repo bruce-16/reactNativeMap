@@ -1,3 +1,6 @@
+/**
+ * 测试页面，避免百度地图在模拟器上直接崩溃，地图只有在真机上运行才可以获取完整权限，地图才能正常加载
+ */
 import React, { Component } from 'react';
 import {
   StyleSheet,

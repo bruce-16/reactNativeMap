@@ -13,6 +13,8 @@ import RecordList from './view/RecordList';
 import BaiduMapView from './view/BaiduMap';
 import MainPageNavi from './view/MainPage.navi';
 import TrackShare from './view/TrackShowShare';
+
+//设置导航器，用于页面切换
 const MyApp = DrawerNavigator({
   /*'主页': {
     screen: HomePage,
@@ -30,6 +32,7 @@ const MyApp = DrawerNavigator({
     }
   }
 },{
+  //设置初始页
   initialRouteName: 'MainPage',
   drawerWidth: 200,
   contentOptions: {
@@ -39,6 +42,7 @@ const MyApp = DrawerNavigator({
       
     },
   },
+  //slider的样式
   contentComponent: props => (
     <ScrollView style={styles.slider}>
       <Image

@@ -1,5 +1,12 @@
+//网络请求工具文件。
 import serverConfig from './server.config';
-
+/**
+ *
+ * @param router 路径
+ * @param method 请求方法
+ * @param data 请求body
+ * @returns {Promise.<*>}
+ */
 export default async (router, method, data) => {
   if(!router){
     console.warn('路径不能为空！');

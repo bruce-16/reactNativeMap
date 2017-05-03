@@ -1,3 +1,6 @@
+/**
+ * 分享组件，由记录完路劲之后，点击分享跳转
+ */
 import React, {Component} from 'react';
 import {
   View,
@@ -14,6 +17,7 @@ import * as WeChat from 'react-native-wechat';
 const {height, width} = Dimensions.get('window');
 
 class TrackShowShare extends Component {
+  //设置标题栏
   static navigationOptions = {
     title: '分享',
     header: (navigation, defaultHeader) => ({
@@ -21,13 +25,16 @@ class TrackShowShare extends Component {
       headerVisible: true  // 覆盖预设中的此项
     })
   }
+
   constructor(props){
     super(props);
     this.state = {
       uploaded: false
     }
   }
-
+  /*
+  * 微信分享功能，异步执行，等待返回结果
+  * */
   async _shareWX() {
     // 分享网页
     try {
@@ -41,6 +48,9 @@ class TrackShowShare extends Component {
     }
   }
 
+  /*
+  * 同步操作，异步上传，等待结果
+  * */
   _uploading(){
     let that = this;
     (async () => {

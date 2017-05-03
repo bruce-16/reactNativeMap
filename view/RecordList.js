@@ -1,3 +1,6 @@
+/**
+ * 列表页面，显示记录，可以查看详情
+ */
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -18,7 +21,9 @@ import utils from './utils';
 
 class RecordList extends Component {
 
+  //情况按钮，为导航器的静态方法，执行改变了组件的props，组件会重新渲染，使用shouldComponentUpdate判断是否需要重新渲染
   static async _emptyData(setParams){
+    //请求服务器的api
     let data = await fetchOperators('/removeAllMapRecords', 'POST');
     if(data.status === 0){
       ToastAndroid.showWithGravity('删除成功！', ToastAndroid.LONG, ToastAndroid.CENTER);
@@ -26,6 +31,7 @@ class RecordList extends Component {
     }
   }
 
+  //设置清空按钮
   static navigationOptions = {
     header: ({state, setParams}) => {
       let right = (
@@ -42,6 +48,7 @@ class RecordList extends Component {
     }
   };
 
+  //设置list的初始化数据
   constructor(props){
     super(props);
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -52,6 +59,7 @@ class RecordList extends Component {
     }
   }
 
+  //请求接口，获取数据，然后重新渲染list
   _getdata(){
      (async () => {
       let data = await fo('/getMapRecords', 'GET');
@@ -69,10 +77,12 @@ class RecordList extends Component {
     })();
   }
 
+  //组件挂载后再请求接口
   componentDidMount() {
     this._getdata();
   }
 
+  //点击清空后，重新请求list数据，并且不重新渲染，因为请求list后，组件会自动渲染一次
   shouldComponentUpdate(nextPorps, nextState){
     if(nextPorps.navigation.state.params.reload){
       nextPorps.navigation.state.params.reload=false;
@@ -83,11 +93,13 @@ class RecordList extends Component {
     }
   }
 
+  //点击事件，参数为list的每列数据
   _handleItemClick(data){
     let {navigate} = this.props.navigation;
     navigate('Details',{historyTracks: data, time: data.time, getData: this._getdata.bind(this)});
   }
 
+  //列表每列样式和点击事件
   _renderItem = (rowData) => {
     let {distance, date, time} = rowData;
     time = utils.second2hms(time);
@@ -112,10 +124,6 @@ class RecordList extends Component {
   }
 
   render() {
-    // if(this.props.navigation.state.params.reload){
-    //   this._getdata();
-    //   this.props.navigation.state.params.reload = false;
-    // }
     return (
       <View>
         <ListView
@@ -159,7 +167,7 @@ const styles = StyleSheet.create({
   }
 });
 
-
+//初始化导航器，包含列表组件和详情组件。
 const List = StackNavigator({
   RecordList: {
     screen: RecordList,

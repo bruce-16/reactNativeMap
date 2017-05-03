@@ -1,3 +1,6 @@
+/**
+ * 详情页，使用地图显示轨迹。
+ */
 import React, {Component} from 'react';
 import {
   View,
@@ -37,6 +40,7 @@ export default class Details extends Component {
     WeChat.registerApp('wx6575737601f069e8');
   }
 
+  //删除数据
   _deleteData(){
     (async () => {
       let {historyTracks,getData} = this.props.navigation.state.params;
