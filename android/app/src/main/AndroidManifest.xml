@@ -53,7 +53,7 @@
         </service>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="swxvQm2VGCRiCSiE9huOnbHVTi459Gma" />
+            android:value="你的百度key" />
 
       <activity
         android:name=".MainActivity"
