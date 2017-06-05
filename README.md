@@ -46,8 +46,8 @@
 
 这里说明， 使用android模拟器运行，会闪退，所以建议在真机上运行。
 
-![主页](https://github.com/zachrey/reactNativeMap/tree/master/images/Home.jpg)
+![主页](https://github.com/zachrey/reactNativeMap/blob/master/images/Home.jpg)
 
-![菜单](https://github.com/zachrey/reactNativeMap/tree/master/images/Home2.jpg)
+![菜单](https://github.com/zachrey/reactNativeMap/blob/master/images/Home2.jpg)
 
-![记录](https://github.com/zachrey/reactNativeMap/tree/master/images/List.jpg)
+![记录](https://github.com/zachrey/reactNativeMap/blob/master/images/List.jpg)
